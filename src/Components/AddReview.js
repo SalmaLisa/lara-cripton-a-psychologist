@@ -114,9 +114,9 @@ const AddReview = ({ service }) => {
                 id="username"
                 type="text"
                 name="username"
-                placeholder={user?.displayName ? user.displayName : "Username"}
+                defaultValue={user?.displayName ? user.displayName : "Username"}
                 className="w-full border border-cyan-400 p-3 focus:outline-none"
-                required
+                readOnly
               />
             </div>
             <div className="col-span-full sm:col-span-3">
@@ -129,7 +129,7 @@ const AddReview = ({ service }) => {
               <input
                 id="email"
                 type="text"
-                value={user?.email ? user.email : "Your Email"}
+                defaultValue={user?.email ? user.email : "Your Email"}
                 className="w-full border border-cyan-400 p-3 focus:outline-none "
                 readOnly
               />

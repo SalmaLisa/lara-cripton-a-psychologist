@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useContext } from "react";
 import Spinner from "../Components/Spinner";
-import { AuthContext } from "../Contexts/AuthProvider";
 import { useTitle } from "../Hooks/useTitle";
 import ServiceCard from "../Shared/ServiceCard";
 

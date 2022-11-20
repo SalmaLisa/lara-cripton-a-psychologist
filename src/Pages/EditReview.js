@@ -70,7 +70,7 @@ const EditReview = () => {
                 id="username"
                 type="text"
                 name="username"
-                value={review?.username}
+                defaultValue = {review?.message}
                 className="w-full border border-cyan-400 p-3 focus:outline-none"
                 readOnly
               />
@@ -85,7 +85,7 @@ const EditReview = () => {
               <input
                 id="email"
                 type="text"
-                value={review?.email}
+                defaultValue={review?.email}
                 className="w-full border border-cyan-400 p-3 focus:outline-none "
                 readOnly
               />
@@ -101,7 +101,7 @@ const EditReview = () => {
               <textarea
                 id="message"
                 name="message"
-                placeholder={review?.message}
+                defaultValue={review?.message}
                 className="w-full border border-cyan-400 p-3 focus:outline-none h-36"
                 required
               ></textarea>

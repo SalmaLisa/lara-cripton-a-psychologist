@@ -4,11 +4,14 @@ import MyReviewRow from "../Components/MyReviewRow";
 import { AuthContext } from "../Contexts/AuthProvider";
 import Swal from "sweetalert2";
 import { useTitle } from "../Hooks/useTitle";
+import Spinner from "../Components/Spinner";
 
 const MyReviews = () => {
-  useTitle("My Review");
+  const [loading,setLoading]=useState(true)
   const [reviews, setReviews] = useState([]);
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout} = useContext(AuthContext);
+  useTitle("My Review");
+  
   useEffect(() => {
     fetch(
       `https://lara-cripton-server.vercel.app/reviews?email=${user?.email}`,
@@ -23,19 +26,19 @@ const MyReviews = () => {
           return logout();
         }
         return res.json();
+        
       })
-      .then((data) => setReviews(data))
+      .then((data) => {
+        setReviews(data)
+       setLoading(false)
+      })
       .catch((err) => console.error(err));
   }, [user?.email, logout]);
-  if (reviews.length === 0) {
-    return (
-      <div className="h-screen flex justify-center mt-40 ">
-        <h1 className="text-2xl text-red-500 font-semibold my-12 text-center">
-          No Reviews Added !
-        </h1>
-      </div>
-    );
+
+  if (loading) {
+    return <Spinner></Spinner>
   }
+ 
   //handle delete review
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure to DELETE this review ?");
@@ -58,7 +61,15 @@ const MyReviews = () => {
         });
     }
   };
-
+  if (reviews.length === 0) {
+    return (
+      <div className="h-screen flex justify-center mt-40 ">
+        <h1 className="text-2xl text-red-500 font-semibold my-12 text-center">
+          No Reviews Added !
+        </h1>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen">
       <h1 className="text-4xl text-blue-900 font-semibold my-12 text-center">
